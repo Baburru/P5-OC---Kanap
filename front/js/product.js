@@ -47,13 +47,24 @@ fetch("http://localhost:3000/api/products")
 
 image_parent[0].appendChild(image)
 
-
 button.addEventListener("click", addCart)
 
 function addCart() {
   const slcColor = document.getElementById("colors").value
-
   const qtt = document.getElementById("quantity").value
-  sessionStorage.setItem("quantity=" + currentID + slcColor ,qtt)
+
+  var existingEntries = JSON.parse(sessionStorage.getItem("allEntries"));
+  if(existingEntries == null) existingEntries = [];
+  var entry = {
+      "name" : '',
+      "title" : productID,
+      "color": slcColor,
+      "qtt": qtt
+  };
+  sessionStorage.setItem("entry", JSON.stringify(entry));
+  // Save allEntries back to local storage
+  existingEntries.push(entry);
+  sessionStorage.setItem("allEntries", JSON.stringify(existingEntries));
+
   console.log(sessionStorage)
 }

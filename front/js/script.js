@@ -20,9 +20,8 @@ for (let i = 0; i < 8; i++) {
       text.innerHTML = value[i].description;
       link.href = "./product.html?id=" + value[i]._id;
       sessionStorage.setItem(i,value[i]._id)
-      /* article.onclick(window.open("./product.html?id=" + value[i]._id)); */
       article.addEventListener("click", openTab)
-      function openTab(){window.open("./product.html?id=" + value[i]._id)}
+      function openTab(){window.open("./product.html?id=" + value[i]._id, "_self")}
     })
     .catch(function (err) {
       // Une erreur est survenue
