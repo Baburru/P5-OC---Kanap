@@ -1,4 +1,7 @@
 const parsed = JSON.parse(sessionStorage.allEntries);
+
+
+
 var entryName = [];
 var entryPrice = [];
 var entryPhoto = [];
@@ -27,6 +30,8 @@ fetch("http://localhost:3000/api/products")
   .catch(function (err) {
     // Une erreur est survenue
   });
+
+
 
 var articleTotal = [];
 for (var i = 0; i < parsed.length; i++) {
@@ -90,6 +95,7 @@ for (var i = 0; i < parsed.length; i++) {
   del.classList.add("deleteItem");
   del.innerHTML = "Supprimer";
 
+ var toDell= document.getElementsByClassName('deleteItem')
 
 
   //Ajout de l'élement à la page
@@ -138,14 +144,13 @@ for (var i = 0; i < parsed.length; i++) {
 
   input_settings.addEventListener('change', CalcArt)
 
- 
+
 }
 
 
   //Calcul total prix
   function CalcPrix() {
     let sumPrice = 0;
-    console.log(parsed)
     for (let i = 0; i < parsed.length; i++) {
       for (let a = 0; a < parsed[i].qtt ; a++) {
         sumPrice += parsePrice[i];
@@ -204,3 +209,26 @@ function testNum(idTarget, errorTarget) {
     errorLocation.innerHTML = "";
   }
 }
+
+
+//Bouton supprimer
+
+console.log(parsed)
+
+var arrClicked = []
+  
+for (let i = 0; i < toDell.length; i++) {
+  arrClicked.push(i)
+  toDell[i].addEventListener('click', Supprimer)
+
+  function Supprimer () {
+    parsed.splice(i,1) 
+    console.log('fait'+i)
+    console.log(parsed)
+  }
+  
+}
+
+
+
+
