@@ -1,10 +1,10 @@
-const parsed = JSON.parse(sessionStorage.allEntries);
+const parsed = JSON.parse(sessionStorage.allEntries)
+console.log(sessionStorage)
 
 
-
-var entryName = [];
-var entryPrice = [];
-var entryPhoto = [];
+const entryName = [] 
+const entryPrice = []
+const entryPhoto = []
 var sumArtc = 0
 
 fetch("http://localhost:3000/api/products")
@@ -19,26 +19,23 @@ fetch("http://localhost:3000/api/products")
         if (parse.title == value[i]._id) {
           entryName.push(value[i].name);
           entryPrice.push(value[i].price);
-          entryPhoto.push(value[i].imageUrl);
-          sessionStorage.setItem("allName", JSON.stringify(entryName));
-          sessionStorage.setItem("allPrice", JSON.stringify(entryPrice));
-          sessionStorage.setItem("allPhoto", JSON.stringify(entryPhoto));
+          entryPhoto.push(value[i].imageUrl)
         }
       });
     }
+    Display()
   })
   .catch(function (err) {
     // Une erreur est survenue
   });
 
-
-
-var articleTotal = [];
+function Display () {
+  var articleTotal = [];
 for (var i = 0; i < parsed.length; i++) {
-  var parseName = JSON.parse(sessionStorage.allName);
+/*   var parseName = JSON.parse(sessionStorage.allName);
 
   var parsePrice = JSON.parse(sessionStorage.allPrice);
-  var parsePhoto = JSON.parse(sessionStorage.allPhoto);
+  var parsePhoto = JSON.parse(sessionStorage.allPhoto); */
 
   const article = document.createElement("article");
   const item_img = document.createElement("div");
@@ -68,14 +65,15 @@ for (var i = 0; i < parsed.length; i++) {
 
   item_img.classList.add("cart__item__img");
 
-  image.src = parsePhoto[i];
+  image.src = entryPhoto[i]
 
   item_content.classList.add("cart__item__content");
   item_description.classList.add("cart__item__content__description");
 
-  item_title.innerHTML = parseName[i];
+
+  item_title.innerHTML = entryName[i]
   item_color.innerHTML = parsed[i].color;
-  item_price.innerHTML = parsePrice[i] + " €";
+  item_price.innerHTML = entryPrice[i] + " €";
 
   settings.classList.add("cart__item__content__settings");
   settings_qtt.classList.add("cart__item__content__settings__quantity");
@@ -153,7 +151,7 @@ for (var i = 0; i < parsed.length; i++) {
     let sumPrice = 0;
     for (let i = 0; i < parsed.length; i++) {
       for (let a = 0; a < parsed[i].qtt ; a++) {
-        sumPrice += parsePrice[i];
+        sumPrice += entryPrice[i]
       }
       
     }
@@ -222,13 +220,14 @@ for (let i = 0; i < toDell.length; i++) {
   toDell[i].addEventListener('click', Supprimer)
 
   function Supprimer () {
-    parsed.splice(i,1) 
+    parsed.splice(1,i)
     console.log('fait'+i)
+    location.reload()
     console.log(parsed)
   }
   
 }
-
+}
 
 
 

@@ -22,6 +22,8 @@ for (let i = 0; i < 8;i++) {
 }
 
 
+
+
 fetch("http://localhost:3000/api/products")
   .then(function (res) {
     if (res.ok) {

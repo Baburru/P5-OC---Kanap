@@ -1,3 +1,7 @@
+
+
+
+
 for (let i = 0; i < 8; i++) {
   const link = document.createElement("a");
   const article = document.createElement("article");
@@ -18,7 +22,6 @@ for (let i = 0; i < 8; i++) {
       image.src = value[i].imageUrl;
       image.alt = value[i].altTxt;
       text.innerHTML = value[i].description;
-      link.href = "./product.html?id=" + value[i]._id;
       sessionStorage.setItem(i,value[i]._id)
       article.addEventListener("click", openTab)
       function openTab(){window.open("./product.html?id=" + value[i]._id, "_self")}
@@ -27,7 +30,11 @@ for (let i = 0; i < 8; i++) {
       // Une erreur est survenue
     });
 
-  box.appendChild(link);
+    title.classList.add("productName")
+    text.classList.add("productDescription")
+
+
+
   box.appendChild(article);
 
   article.appendChild(image);
