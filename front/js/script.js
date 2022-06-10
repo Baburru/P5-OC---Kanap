@@ -1,7 +1,3 @@
-
-
-
-
 for (let i = 0; i < 8; i++) {
   const link = document.createElement("a");
   const article = document.createElement("article");
@@ -21,8 +17,10 @@ for (let i = 0; i < 8; i++) {
       title.innerHTML = value[i].name;
       image.src = value[i].imageUrl;
       image.alt = value[i].altTxt;
-      text.innerHTML = value[i].description;
+      text.innerHTML = value[i].description
+      //On met l'id dans le session storage pour le récupérer et tester sur la page produit
       sessionStorage.setItem(i,value[i]._id)
+      //Ajout evenement click sur les articles pour ouvrir la page produit correspondante
       article.addEventListener("click", openTab)
       function openTab(){window.open("./product.html?id=" + value[i]._id, "_self")}
     })

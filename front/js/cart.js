@@ -1,5 +1,6 @@
+
 const parsed = JSON.parse(sessionStorage.allEntries)
-console.log(sessionStorage)
+
 
 
 const entryName = [] 
@@ -211,7 +212,6 @@ function testNum(idTarget, errorTarget) {
 
 //Bouton supprimer
 
-console.log(parsed)
 
 var arrClicked = []
   
@@ -221,13 +221,30 @@ for (let i = 0; i < toDell.length; i++) {
 
   function Supprimer () {
     parsed.splice(1,i)
-    console.log('fait'+i)
-    location.reload()
-    console.log(parsed)
+    
   }
   
 }
+
+//Vérifier si meme produit plusieurs fois
+
+/* for (let i = 0; i < parsed.length;i++) {
+  testMulti(parsed, i)
 }
+function testMulti (tabs ,current_index) {
+  console.log(current_index)
+  console.log(tabs[current_index])
+  tabs.forEach(tab => {
+    console.log(tab.title)
+      if( tabs[current_index].title == tab.title) {
+    Supprimer()
+    StackToTop()
+  }
+  
+  });
+
+  
+} */
 
 
-
+}

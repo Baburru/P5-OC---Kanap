@@ -9,12 +9,13 @@ const button = document.getElementById("addToCart")
 
 
 
-
+//On récupère l'URL de la page et on récupère que la fin  (id du produit)
 
 newURL = window.location.href
 getID = newURL.split('=')
 productID = getID[1]
 
+// Puis on teste l'ID dans l'URL avec l'ID du produit sur lequel on a clické
 for (let i = 0; i < 8;i++) {
     if (productID == sessionStorage[i]) {
         var currentID = i
