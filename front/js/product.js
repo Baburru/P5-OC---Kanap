@@ -9,7 +9,7 @@ const button = document.getElementById("addToCart")
 
 
 
-//On récupère l'URL de la page et on récupère que la fin  (id du produit)
+//On prend l'URL de la page et on récupère que la fin  (id du produit)
 
 newURL = window.location.href
 getID = newURL.split('=')
@@ -38,6 +38,7 @@ fetch("http://localhost:3000/api/products")
        option.innerHTML = color
        option_parent.appendChild(option)
     });
+    // On affiche les données correspondante à l'ID récupérée dans l'URL
     image.src = value[currentID].imageUrl;
     image.alt = value[currentID].altTxt;
     description.innerHTML = value[currentID].description;
@@ -52,10 +53,15 @@ image_parent[0].appendChild(image)
 
 button.addEventListener("click", addCart)
 
+
+// Fonction qui ajoute au session storage les produit que l'on séléctionne avec la qtt et la couleur
 function addCart() {
   const slcColor = document.getElementById("colors").value
   const qtt = document.getElementById("quantity").value
 
+  if (qtt <= 0) {
+    return
+  } else {
   var existingEntries = JSON.parse(sessionStorage.getItem("allEntries"));
   if(existingEntries == null) existingEntries = [];
   var entry = {
@@ -68,6 +74,6 @@ function addCart() {
   // Save allEntries back to local storage
   existingEntries.push(entry);
   sessionStorage.setItem("allEntries", JSON.stringify(existingEntries));
-
+  }
   console.log(sessionStorage)
 }
